@@ -1,0 +1,251 @@
+% \LaTeX beamer theme with CSCS style layout
+% author: Maxime Martinasso <maxime.martinasso@cscs.ch>
+% April, 21st, 2015
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{beamerthemeCSCS}[2015/04/21 CSCS beamer theme]
+\RequirePackage{ifthen}
+\RequirePackage[scaled=.85]{helvet}
+\RequirePackage{tcolorbox}
+
+\newlength{\@headerdist}
+\setlength{\@headerdist}{5mm}
+
+\mode<presentation>
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CSCS color definition
+\definecolor{cscsred}{RGB}{172,27,38}
+\definecolor{cscsgrey}{RGB}{64,64,64}
+\definecolor{cscsgreen}{RGB}{114,121,28}
+\definecolor{cscsblue}{RGB}{0,122,150}
+\definecolor{cscsbrown}{RGB}{151,72,6}
+\definecolor{cscspurple}{RGB}{128,0,128}
+\definecolor{cscsyellow}{RGB}{167,135,32}
+
+% no navigation
+\setbeamertemplate{navigation symbols}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Block definitions
+
+\tcbset{arc=0mm,boxrule=0.2mm}
+
+\newenvironment<>{black0block}[1]{%
+\setbeamercolor{block title}{}%
+\begin{tcolorbox}[colback=white,colframe=black,colbacktitle=white,coltitle=black,title=#1]}{\end{tcolorbox}}
+\newenvironment<>{black1block}[1]{%
+\setbeamercolor{block title}{}%
+\begin{tcolorbox}[colback=white,colframe=black,coltitle=white,title=#1]}{\end{tcolorbox}}
+\newenvironment<>{black2block}[1]{%
+\setbeamercolor{block title}{}%
+\begin{tcolorbox}[colback=white,colframe=black,colbacktitle=white!75!black,coltitle=black,title=#1]}{\end{tcolorbox}}
+
+\newenvironment<>{green0block}[1]{%
+\setbeamercolor{block title}{}%
+\begin{tcolorbox}[colback=white,colframe=cscsgreen,colbacktitle=white,coltitle=black,title=#1]}{\end{tcolorbox}}
+\newenvironment<>{green1block}[1]{%
+\setbeamercolor{block title}{}%
+\begin{tcolorbox}[colback=white,colframe=cscsgreen,coltitle=white,title=#1]}{\end{tcolorbox}}
+\newenvironment<>{green2block}[1]{%
+\setbeamercolor{block title}{}%
+\begin{tcolorbox}[colback=white,colframe=cscsgreen,colbacktitle=cscsgreen!50!white,coltitle=black,title=#1]}{\end{tcolorbox}}
+
+\newenvironment<>{blue0block}[1]{%
+\setbeamercolor{block title}{}%
+\begin{tcolorbox}[colback=white,colframe=cscsblue,colbacktitle=white,coltitle=black,title=#1]}{\end{tcolorbox}}
+\newenvironment<>{blue1block}[1]{%
+\setbeamercolor{block title}{}%
+\begin{tcolorbox}[colback=white,colframe=cscsblue,coltitle=white,title=#1]}{\end{tcolorbox}}
+\newenvironment<>{blue2block}[1]{%
+\setbeamercolor{block title}{}%
+\begin{tcolorbox}[colback=white,colframe=cscsblue,colbacktitle=cscsblue!50!white,coltitle=black,title=#1]}{\end{tcolorbox}}
+
+\newenvironment<>{brown0block}[1]{%
+\setbeamercolor{block title}{}%
+\begin{tcolorbox}[colback=white,colframe=cscsbrown,colbacktitle=white,coltitle=black,title=#1]}{\end{tcolorbox}}
+\newenvironment<>{brown1block}[1]{%
+\setbeamercolor{block title}{}%
+\begin{tcolorbox}[colback=white,colframe=cscsbrown,coltitle=white,title=#1]}{\end{tcolorbox}}
+\newenvironment<>{brown2block}[1]{%
+\setbeamercolor{block title}{}%
+\begin{tcolorbox}[colback=white,colframe=cscsbrown,colbacktitle=cscsbrown!50!white,coltitle=black,title=#1]}{\end{tcolorbox}}
+
+\newenvironment<>{purple0block}[1]{%
+\setbeamercolor{block title}{}%
+\begin{tcolorbox}[colback=white,colframe=cscspurple,colbacktitle=white,coltitle=black,title=#1]}{\end{tcolorbox}}
+\newenvironment<>{purple1block}[1]{%
+\setbeamercolor{block title}{}%
+\begin{tcolorbox}[colback=white,colframe=cscspurple,coltitle=white,title=#1]}{\end{tcolorbox}}
+\newenvironment<>{purple2block}[1]{%
+\setbeamercolor{block title}{}%
+\begin{tcolorbox}[colback=white,colframe=cscspurple,colbacktitle=cscspurple!50!white,coltitle=black,title=#1]}{\end{tcolorbox}}
+
+\newenvironment<>{yellow0block}[1]{%
+\setbeamercolor{block title}{}%
+\begin{tcolorbox}[colback=white,colframe=cscsyellow,colbacktitle=white,coltitle=black,title=#1]}{\end{tcolorbox}}
+\newenvironment<>{yellow1block}[1]{%
+\setbeamercolor{block title}{}%
+\begin{tcolorbox}[colback=white,colframe=cscsyellow,coltitle=white,title=#1]}{\end{tcolorbox}}
+\newenvironment<>{yellow2block}[1]{%
+\setbeamercolor{block title}{}%
+\begin{tcolorbox}[colback=white,colframe=cscsyellow,colbacktitle=cscsyellow!50!white,coltitle=black,title=#1]}{\end{tcolorbox}}
+
+\newenvironment<>{red0block}[1]{%
+\setbeamercolor{block title}{}%
+\begin{tcolorbox}[colback=white,colframe=cscsred,colbacktitle=white,coltitle=black,title=#1]}{\end{tcolorbox}}
+\newenvironment<>{red1block}[1]{%
+\setbeamercolor{block title}{}%
+\begin{tcolorbox}[colback=white,colframe=cscsred,coltitle=white,title=#1]}{\end{tcolorbox}}
+\newenvironment<>{red2block}[1]{%
+\setbeamercolor{block title}{}%
+\begin{tcolorbox}[colback=white,colframe=cscsred,colbacktitle=cscsred!50!white,coltitle=black,title=#1]}{\end{tcolorbox}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Title frame
+\setbeamertemplate{background canvas}{%
+\ifnum\c@framenumber=1%First slide
+\begin{picture}(0,40)
+      \put(15,0){\includegraphics[scale=.25]{cscs_images/image4.pdf}}
+      \put(310,12){\includegraphics[scale=.29]{cscs_images/image1.pdf}}
+  \end{picture}
+  \begin{picture}(0,0)
+      \put(0,-105){\includegraphics[width=\paperwidth]{cscs_images/image3.pdf}}
+      \put(0,-106){\color{cscsred}\rule{\paperwidth}{0.4mm}}
+  \end{picture}
+\fi%
+}
+
+\setbeamertemplate{frametitle}
+{
+  \ifbeamer@plainframe
+  \else
+    \vspace{.5cm}\hspace{-.5cm}
+    \textbf{\color{cscsgrey}\insertframetitle}
+    \vspace{-.2cm}
+  \fi
+}
+
+% title page with CSCS image
+\setbeamertemplate{title page}{
+  \vspace{\@headerdist}
+  \vspace{4.5cm}
+  \hspace{-5mm}
+  \textbf{\LARGE{\color{cscsgrey}\inserttitle}}\\[3mm]
+  \normalsize
+  \hspace{-5mm}
+  {\color{gray}\insertsubtitle}\\
+  \hspace{-5mm}
+  {\color{gray}\insertauthor}\\
+  \hspace{-5mm}
+  {\color{gray}\insertdate}
+}
+
+\newcommand{\cscstitle}{
+\begin{frame}[title,plain]
+\titlepage
+\end{frame}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Chapter title frame
+\setbeamertemplate{part page}{%
+\begin{picture}(0,0)
+   \put(-10,73){\includegraphics[scale=.25]{cscs_images/image4.pdf}}
+   \put(275,85){\includegraphics[scale=.29]{cscs_images/image1.pdf}}
+\end{picture}
+\begin{picture}(0,0)
+   \put(-10,-10){\usebeamerfont{part title}\color{cscsgrey}\textbf{\insertpart}}
+   \put(-30,-17){\color{cscsred}\rule{\paperwidth}{0.4mm}}
+\end{picture}
+}
+
+\newcommand{\cscschapter}[1]{
+\part{#1}
+\begin{frame}[plain]
+\partpage
+\end{frame}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Table of content frame
+\setbeamercolor{section in toc}{fg=black}
+\setbeamertemplate{section in toc}{
+  \leavevmode
+  \llap{%
+      \makebox(5,5)[t]{
+          \textcolor{cscsred}{\vrule width1mm height1mm depth.1mm}
+      }
+   }%
+   \hspace{2mm}\inserttocsection\par
+}
+\setbeamertemplate{subsection in toc}{
+  \leavevmode\leftskip=4ex%
+  \llap{%
+      \makebox(5,5)[t]{
+          \textcolor{cscsgrey}{\vrule width1.5mm height0.2mm depth.1mm}
+      }
+   }%
+   \hspace{2mm}\inserttocsubsection\par
+}
+\setbeamertemplate{subsubsection in toc}{
+  \leavevmode\leftskip=9ex%
+  \llap{%
+      \makebox(5,5)[t]{
+          \textcolor{black}{\tiny$\bullet$}
+      }
+   }%
+   \hspace{2mm}\inserttocsubsubsection\par
+}
+
+\newcommand{\cscstableofcontents}[1]{
+\begin{frame}
+\frametitle{#1}
+\begin{columns}[T]
+\begin{column}{.5\textwidth}
+\includegraphics[width=157px, height=210px]{cscs_images/image8.jpeg}
+\end{column}
+\begin{column}{.5\textwidth}
+\vspace{.2cm}
+\tableofcontents
+\end{column}
+\end{columns}
+\end{frame}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Footer with configurable text
+\setbeamercolor{footline}{fg=gray}
+\setbeamertemplate{footline}{
+  \ifbeamer@plainframe
+  \else
+  \begin{picture}(0,0)
+      \put(20,5){\includegraphics[scale=.15]{cscs_images/image2.pdf}}
+      \put(155,9){{\fontsize{4.5}{5}\selectfont \footlinetext {\fontsize{6}{7}\selectfont\color{black}$\;\mid\,$} \color{gray}\insertframenumber}}
+      \put(310,8){\includegraphics[scale=.22]{cscs_images/image1.pdf}}
+  \end{picture}
+  \fi
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thank you frame
+\newcommand{\cscsthankyou}[1]{
+    \begin{frame}[noframenumbering,plain]
+\begin{picture}(0,0)
+   \put(-10,73){\includegraphics[scale=.25]{cscs_images/image4.pdf}}
+   \put(275,85){\includegraphics[scale=.29]{cscs_images/image1.pdf}}
+\end{picture}
+\begin{picture}(0,0)
+   \put(-30,-26){\includegraphics[width=\paperwidth]{cscs_images/image7.pdf}}
+   \put(-30,-27){\color{cscsred}\rule{\paperwidth}{0.4mm}}
+   \put(-10,-70){\usebeamerfont{part title}\color{cscsgrey}#1}
+\end{picture}
+    \end{frame}
+}
+
+
+\mode
+<all>

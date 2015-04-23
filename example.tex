@@ -1,0 +1,118 @@
+\documentclass{beamer}
+\usetheme{CSCS}
+
+\newcommand{\footlinetext}{Insert\_Footer}
+
+\author{Author, CSCS}
+\title{Presentation Title}
+\subtitle{Event}
+\date{\today}
+
+\begin{document}
+
+% TITLE SLIDE
+\cscstitle
+
+% EMPTY SLIDE
+\begin{frame}
+\end{frame}
+
+% TABLE OF CONTENT SLIDE
+\cscstableofcontents{Title}
+
+\section{Section1}
+\subsection{Subsection1}
+\subsubsection{Subsubsection1}
+
+\section{Section2}
+\subsection{Subsection2}
+\subsubsection{Subsubsection2}
+
+% CHAPTER SLIDE
+\cscschapter{Chapter Title}
+
+% Block style example
+\begin{frame}{Quick Styles}
+\begin{columns}
+    \begin{column}{0.12\paperwidth}
+    \begin{black0block}{Abc}
+    \end{black0block}
+    \begin{black1block}{Abc}
+    \end{black1block}
+    \begin{black2block}{Abc}
+    \end{black2block}
+    \end{column}
+
+    \begin{column}{0.12\paperwidth}
+    \begin{green0block}{Abc}
+    \end{green0block}
+    \begin{green1block}{Abc}
+    \end{green1block}
+    \begin{green2block}{Abc}
+    \end{green2block}
+    \end{column}
+
+    \begin{column}{0.12\paperwidth}
+    \begin{blue0block}{Abc}
+    \end{blue0block}
+    \begin{blue1block}{Abc}
+    \end{blue1block}
+    \begin{blue2block}{Abc}
+    \end{blue2block}
+    \end{column}
+
+    \begin{column}{0.12\paperwidth}
+    \begin{brown0block}{Abc}
+    \end{brown0block}
+    \begin{brown1block}{Abc}
+    \end{brown1block}
+    \begin{brown2block}{Abc}
+    \end{brown2block}
+    \end{column}
+
+    \begin{column}{0.12\paperwidth}
+    \begin{purple0block}{Abc}
+    \end{purple0block}
+    \begin{purple1block}{Abc}
+    \end{purple1block}
+    \begin{purple2block}{Abc}
+    \end{purple2block}
+    \end{column}
+
+    \begin{column}{0.12\paperwidth}
+    \begin{yellow0block}{Abc}
+    \end{yellow0block}
+    \begin{yellow1block}{Abc}
+    \end{yellow1block}
+    \begin{yellow2block}{Abc}
+    \end{yellow2block}
+    \end{column}
+
+    \begin{column}{0.12\paperwidth}
+    \begin{red0block}{Abc}
+    \end{red0block}
+    \begin{red1block}{Abc}
+    \end{red1block}
+    \begin{red2block}{Abc}
+    \end{red2block}
+    \end{column}
+
+\end{columns}
+\end{frame}
+
+% Example
+\begin{frame}{Formula}
+    My formula is $E=m\times c^2$
+    \begin{blue2block}{Are examples in a blue block?}
+        My example of formula rocks!
+    \end{blue2block}
+
+    \begin{red2block}{Alert an error in the formula!}
+        just jocking...
+    \end{red2block}
+\end{frame}
+
+% THANK YOU SLIDE
+\cscsthankyou{Thank you for your attention.}
+
+\end{document}
