@@ -111,7 +111,7 @@
       \put(310,12){\includegraphics[scale=.29]{cscs_images/image1.pdf}}
   \end{picture}
   \begin{picture}(0,0)
-      \put(-2.5,-105){\includegraphics[width=\paperwidth]{cscs_images/image3.pdf}}
+      \put(-2.5,-105){\includegraphics[width=\paperwidth]{\picturetitle}}
       \put(-2.5,-106){\color{cscsred}\rule{\paperwidth}{0.4mm}}
   \end{picture}
 \fi%
@@ -245,6 +245,17 @@
 \end{picture}
     \end{frame}
 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Change itemize and enumerate
+\setbeamertemplate{itemize item}{\makebox(5,5)[t]{\textcolor{cscsred}{\vrule width1mm height1mm depth.1mm}}}
+\setbeamertemplate{itemize subitem}{\makebox(5,5)[t]{\textcolor{cscsgrey}{\vrule width1.5mm height0.2mm depth.1mm}}}
+\setbeamertemplate{itemize subsubitem}{\makebox(5,5)[t]{\textcolor{black}{\tiny$\bullet$}}}
+
+\setbeamertemplate{enumerate item}{\textcolor{cscsgrey}{\insertenumlabel.}}
+\setbeamertemplate{enumerate subitem}{\textcolor{cscsgrey}{\insertenumlabel.\insertsubenumlabel}}
+\setbeamertemplate{enumerate subsubitem}{\textcolor{cscsgrey}{\insertenumlabel.\insertsubenumlabel.\insertsubsubenumlabel}}
+\setbeamertemplate{enumerate mini template}{\textcolor{cscsgrey}{\insertenumlabel}}
 
 
 \mode

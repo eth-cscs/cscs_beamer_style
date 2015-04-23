@@ -3,6 +3,11 @@
 
 \newcommand{\footlinetext}{Insert\_Footer}
 
+% Select the image for the title page
+\newcommand{\picturetitle}{cscs_images/image3.pdf}
+%\newcommand{\picturetitle}{cscs_images/image5.pdf}
+%\newcommand{\picturetitle}{cscs_images/image6.pdf}
+
 \author{Author, CSCS}
 \title{Presentation Title}
 \subtitle{Event}
@@ -104,12 +109,30 @@
 \begin{frame}{Formula}
     My formula is $E=m\times c^2$
     \begin{blue2block}{Are examples in a blue block?}
-        My example of formula rocks!
+    \begin{itemize}
+        \item My example
+        \begin{itemize}
+            \item for a formula
+            \begin{itemize}
+                \item rocks!
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
     \end{blue2block}
 
     \begin{red2block}{Alert an error in the formula!}
-        just jocking...
+    \begin{enumerate}
+        \item First enumerated item
+        \begin{enumerate}
+            \item First first enumerated item
+            \begin{enumerate}
+                \item First first first enumerated item
+            \end{enumerate}
+        \end{enumerate}
+        \item just jocking...
+    \end{enumerate}
     \end{red2block}
+
 \end{frame}
 
 % THANK YOU SLIDE
