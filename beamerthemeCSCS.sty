@@ -111,8 +111,8 @@
       \put(310,12){\includegraphics[scale=.29]{cscs_images/image1.pdf}}
   \end{picture}
   \begin{picture}(0,0)
-      \put(0,-105){\includegraphics[width=\paperwidth]{cscs_images/image3.pdf}}
-      \put(0,-106){\color{cscsred}\rule{\paperwidth}{0.4mm}}
+      \put(-2.5,-105){\includegraphics[width=\paperwidth]{cscs_images/image3.pdf}}
+      \put(-2.5,-106){\color{cscsred}\rule{\paperwidth}{0.4mm}}
   \end{picture}
 \fi%
 }
@@ -143,7 +143,7 @@
 }
 
 \newcommand{\cscstitle}{
-\begin{frame}[title,plain]
+\begin{frame}[plain]
 \titlepage
 \end{frame}
 }
@@ -156,8 +156,8 @@
    \put(275,85){\includegraphics[scale=.29]{cscs_images/image1.pdf}}
 \end{picture}
 \begin{picture}(0,0)
-   \put(-10,-10){\usebeamerfont{part title}\color{cscsgrey}\textbf{\insertpart}}
-   \put(-30,-17){\color{cscsred}\rule{\paperwidth}{0.4mm}}
+   \put(-10,-20){\usebeamerfont{part title}\color{cscsgrey}\textbf{\insertpart}}
+   \put(-31,-27){\color{cscsred}\rule{\paperwidth}{0.4mm}}
 \end{picture}
 }
 
@@ -239,9 +239,9 @@
    \put(275,85){\includegraphics[scale=.29]{cscs_images/image1.pdf}}
 \end{picture}
 \begin{picture}(0,0)
-   \put(-30,-26){\includegraphics[width=\paperwidth]{cscs_images/image7.pdf}}
-   \put(-30,-27){\color{cscsred}\rule{\paperwidth}{0.4mm}}
-   \put(-10,-70){\usebeamerfont{part title}\color{cscsgrey}#1}
+   \put(-31,-26){\includegraphics[width=\paperwidth]{cscs_images/image7.pdf}}
+   \put(-31,-27){\color{cscsred}\rule{\paperwidth}{0.4mm}}
+   \put(-10,-70){\textbf{\usebeamerfont{part title}\color{cscsgrey}#1}}
 \end{picture}
     \end{frame}
 }
