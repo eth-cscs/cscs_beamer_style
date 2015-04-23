@@ -107,12 +107,12 @@
 \setbeamertemplate{background canvas}{%
 \ifnum\c@framenumber=1%First slide
 \begin{picture}(0,40)
-      \put(15,0){\includegraphics[scale=.25]{cscs_images/image4.pdf}}
-      \put(310,12){\includegraphics[scale=.29]{cscs_images/image1.pdf}}
+      \put(12,2){\includegraphics[scale=.25]{cscs_images/image4.pdf}}
+      \put(312,14){\includegraphics[scale=.28]{cscs_images/image1.pdf}}
   \end{picture}
   \begin{picture}(0,0)
-      \put(-2.5,-105){\includegraphics[width=\paperwidth]{\picturetitle}}
-      \put(-2.5,-106){\color{cscsred}\rule{\paperwidth}{0.4mm}}
+      \put(-2.5,-100){\includegraphics[width=\paperwidth]{\picturetitle}}
+      \put(-2.5,-101){\color{cscsred}\rule{\paperwidth}{0.4mm}}
   \end{picture}
 \fi%
 }
@@ -131,14 +131,14 @@
 \setbeamertemplate{title page}{
   \vspace{\@headerdist}
   \vspace{4.5cm}
-  \hspace{-5mm}
-  \textbf{\LARGE{\color{cscsgrey}\inserttitle}}\\[3mm]
+  \hspace{-6.5mm}
+  \textbf{\LARGE{\color{cscsgrey}\inserttitle}}\\[2mm]
   \normalsize
-  \hspace{-5mm}
+  \hspace{-6.5mm}
   {\color{gray}\insertsubtitle}\\
-  \hspace{-5mm}
+  \hspace{-6.5mm}
   {\color{gray}\insertauthor}\\
-  \hspace{-5mm}
+  \hspace{-6.5mm}
   {\color{gray}\insertdate}
 }
 
@@ -152,12 +152,12 @@
 % Chapter title frame
 \setbeamertemplate{part page}{%
 \begin{picture}(0,0)
-   \put(-10,73){\includegraphics[scale=.25]{cscs_images/image4.pdf}}
-   \put(275,85){\includegraphics[scale=.29]{cscs_images/image1.pdf}}
+   \put(-16,71){\includegraphics[scale=.25]{cscs_images/image4.pdf}}
+   \put(285,83){\includegraphics[scale=.29]{cscs_images/image1.pdf}}
 \end{picture}
 \begin{picture}(0,0)
-   \put(-10,-20){\usebeamerfont{part title}\color{cscsgrey}\textbf{\insertpart}}
-   \put(-31,-27){\color{cscsred}\rule{\paperwidth}{0.4mm}}
+   \put(-18,-22){\usebeamerfont{part title}\color{cscsgrey}\textbf{\insertpart}}
+   \put(-31,-28){\color{cscsred}\rule{\paperwidth}{0.4mm}}
 \end{picture}
 }
 
@@ -222,9 +222,9 @@
   \ifbeamer@plainframe
   \else
   \begin{picture}(0,0)
-      \put(20,5){\includegraphics[scale=.15]{cscs_images/image2.pdf}}
-      \put(155,9){{\fontsize{4.5}{5}\selectfont \footlinetext {\fontsize{6}{7}\selectfont\color{black}$\;\mid\,$} \color{gray}\insertframenumber}}
-      \put(310,8){\includegraphics[scale=.22]{cscs_images/image1.pdf}}
+      \put(14,7){\includegraphics[scale=.14]{cscs_images/image2.pdf}}
+      \put(158,11){{\fontsize{4.5}{5}\selectfont \footlinetext {\fontsize{6}{7}\selectfont\color{black}$\;\mid\,$} \color{gray}\insertframenumber}}
+      \put(319,10){\includegraphics[scale=.22]{cscs_images/image1.pdf}}
   \end{picture}
   \fi
 }
@@ -235,13 +235,13 @@
 \newcommand{\cscsthankyou}[1]{
     \begin{frame}[noframenumbering,plain]
 \begin{picture}(0,0)
-   \put(-10,73){\includegraphics[scale=.25]{cscs_images/image4.pdf}}
-   \put(275,85){\includegraphics[scale=.29]{cscs_images/image1.pdf}}
+   \put(-16,71){\includegraphics[scale=.25]{cscs_images/image4.pdf}}
+   \put(285,83){\includegraphics[scale=.29]{cscs_images/image1.pdf}}
 \end{picture}
 \begin{picture}(0,0)
    \put(-31,-26){\includegraphics[width=\paperwidth]{cscs_images/image7.pdf}}
    \put(-31,-27){\color{cscsred}\rule{\paperwidth}{0.4mm}}
-   \put(-10,-70){\textbf{\usebeamerfont{part title}\color{cscsgrey}#1}}
+   \put(-18,-70){\textbf{\usebeamerfont{part title}\color{cscsgrey}#1}}
 \end{picture}
     \end{frame}
 }
