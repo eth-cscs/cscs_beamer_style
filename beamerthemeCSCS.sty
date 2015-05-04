@@ -150,21 +150,16 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Chapter title frame
-\setbeamertemplate{part page}{%
+\newcommand{\cscschapter}[1]{
+\begin{frame}[plain]
 \begin{picture}(0,0)
    \put(-16,71){\includegraphics[scale=.25]{cscs_images/image4.pdf}}
    \put(285,83){\includegraphics[scale=.29]{cscs_images/image1.pdf}}
 \end{picture}
 \begin{picture}(0,0)
-   \put(-18,-22){\usebeamerfont{part title}\color{cscsgrey}\textbf{\insertpart}}
+   \put(-18,-22){\usebeamerfont{part title}\color{cscsgrey}\textbf{#1}}
    \put(-31,-28){\color{cscsred}\rule{\paperwidth}{0.4mm}}
 \end{picture}
-}
-
-\newcommand{\cscschapter}[1]{
-\part{#1}
-\begin{frame}[plain]
-\partpage
 \end{frame}
 }
 
@@ -199,16 +194,16 @@
    \hspace{2mm}\inserttocsubsubsection\par
 }
 
-\newcommand{\cscstableofcontents}[1]{
+\newcommand{\cscstableofcontents}[2][]{
 \begin{frame}
-\frametitle{#1}
+\frametitle{#2}
 \begin{columns}[T]
 \begin{column}{.5\textwidth}
 \includegraphics[width=157px, height=210px]{cscs_images/image8.jpeg}
 \end{column}
 \begin{column}{.5\textwidth}
 \vspace{.2cm}
-\tableofcontents
+\tableofcontents[#1]
 \end{column}
 \end{columns}
 \end{frame}
