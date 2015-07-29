@@ -144,6 +144,32 @@
     \end{red2block}
 \end{frame}
 
+\begin{frame}[fragile]{Code listing}
+\begin{Cpplisting}[: My code title with some openmp]{}
+int main (int argc, char *argv[]) {
+    int nthreads, tid;
+    #pragma omp parallel private(nthreads, tid) {
+        tid = omp_get_thread_num();
+        printf("Hello World from thread = %d\n", tid);
+        if (tid == 0) {
+            nthreads = omp_get_num_threads();
+            printf("Number of threads = %d\n", nthreads);
+        }
+    }  /* All threads join master thread and disband */
+    return 0;
+}
+\end{Cpplisting}
+\begin{Fortranlisting}[: My Fortran code here]{}
+program variable
+real :: x ! This defines a variable called x
+x = 23.6*log(4.2)/(3.0+2.1) ! This gives it a value
+print *, 'The value of x is ', x 
+end program
+\end{Fortranlisting}
+\footnotesize
+Here some cpp code in the text: \lstinlineCpp{int main(int args, char *argv[])}\\
+Here some Fortran code in the text: \lstinlineFortran{INTEGER :: Y(1,5)}
+\end{frame}
 % THANK YOU SLIDE
 \cscsthankyou{Thank you for your attention.}
 
