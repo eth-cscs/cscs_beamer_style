@@ -1,6 +1,4 @@
-
-\documentclass[aspectratio=43]{beamer}
-% Theme works only with a 4:3 aspect ratio
+\documentclass[aspectratio=1610]{beamer}
 \usetheme{CSCS}
 
 % define footer text
@@ -33,7 +31,7 @@
 % All options for table of contents:
 % currentsection, currentsubsection, firstsection=xx, hideallsubsections, hideothersubsections, part=xx, pausesections, pausesubsections, sections=xx, sections={xx-yy}, sections={xx,yy}
 %\cscstableofcontents[hideallsubsections]{Title}
-\cscstableofcontents{Title}
+\cscstableofcontents{TOC Title}
 
 \section{Section1}
 \subsection{Subsection1}
@@ -43,8 +41,8 @@
 \subsection{Subsection2}
 \subsubsection{Subsubsection2}
 
-% CHAPTER SLIDE
-\cscschapter{Chapter Title}
+% New part; a frame with part name will be automatically inserted
+\part{Part Title}
 
 % Block style example
 \begin{frame}{Quick Styles}

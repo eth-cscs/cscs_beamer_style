@@ -4,7 +4,6 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{beamerthemeCSCS}[2015/04/21 CSCS beamer theme]
-\RequirePackage{ifthen}
 \RequirePackage[scaled=.85]{helvet}
 \RequirePackage{tcolorbox}
 \RequirePackage{listings}
@@ -14,7 +13,7 @@
 \usefonttheme[onlymath]{serif}
 
 \newlength{\@headerdist}
-\setlength{\@headerdist}{5mm}
+\setlength{\@headerdist}{2\baselineskip}
 
 \mode<presentation>
 
@@ -110,20 +109,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Title frame
-\setbeamertemplate{background canvas}{%
-\ifnum\c@framenumber=1%First slide
-\begin{picture}(0,40)
-      \put(12,2){\includegraphics[scale=.25]{cscs_images/image4.pdf}}
-      \put(312,14){\includegraphics[scale=.28]{cscs_images/image1.pdf}}
-  \end{picture}
-  \begin{picture}(0,0)
-      \put(-2.5,-100){\includegraphics[width=\paperwidth]{\picturetitle}}
-      \put(-2.5,-101){\color{cscsred}\rule{\paperwidth}{0.4mm}}
-  \end{picture}
-\fi%
-}
-
+% Frame title
 \setbeamertemplate{frametitle}
 {
   \ifbeamer@plainframe
@@ -136,8 +122,14 @@
 
 % title page with CSCS image
 \setbeamertemplate{title page}{
+  \begin{beamercolorbox}[wd=\paperwidth]{decoration}
+    \vspace{\baselineskip}
+    \includegraphics[width=\paperwidth,height=.33\paperheight]{\picturetitle}
+    \vspace{-\baselineskip}
+    \color{cscsred}\rule\paperwidth{0.4mm}
+  \end{beamercolorbox}
+
   \vspace{\@headerdist}
-  \vspace{4.5cm}
   \hspace{-6.5mm}
   \textbf{\LARGE{\color{cscsgrey}\inserttitle}}\\[2mm]
   \normalsize
@@ -149,19 +141,64 @@
   {\color{gray}\insertdate}
 }
 
+\newcommand\cscsheadline{
+  \hbox{
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=36pt,left]{headline}
+      \hspace{12pt}\includegraphics[scale=.25]{cscs_images/image4.pdf}
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=36pt,right]{headline}
+      \includegraphics[scale=.29]{cscs_images/image1.pdf}\hspace{18pt}
+    \end{beamercolorbox}
+  }
+}
+
+\newlength\footlineraise
+\setlength\footlineraise{7pt}
+\newcommand\cscsfootline{
+  \hbox{
+    \begin{beamercolorbox}[wd=.15\paperwidth,ht=1.1em,dp=\footlineraise,center]{footline}
+      \includegraphics[scale=.14]{cscs_images/image2.pdf}
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[wd=.70\paperwidth,ht=1.1em,dp=\footlineraise,center]{footline}
+      \footlinetext\hspace{1ex}$\mid$\hspace{1ex}\insertframenumber
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[wd=.15\paperwidth,ht=1.1em,dp=\footlineraise,center]{footline}
+      \includegraphics[scale=.22]{cscs_images/image1.pdf}
+    \end{beamercolorbox}
+  }
+}
+
 \newcommand{\cscstitle}{
-\begin{frame}[plain]
-\titlepage
-\end{frame}
+  \setbeamertemplate{footline}{}
+  \setbeamertemplate{headline}{\cscsheadline}
+  \frame{\titlepage}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Chapter title frame
+% Part title frame
+\setbeamertemplate{part page}{
+  \bfseries
+  \hspace{-6.5mm}\usebeamerfont{part title}\color{cscsgrey}\insertpart
+  \vspace{-5pt}
+  \begin{beamercolorbox}[wd=\paperwidth]{line}
+    \color{cscsred}\rule\paperwidth{0.4mm}
+  \end{beamercolorbox}
+}
+
+\AtBeginPart{
+  {
+    \setbeamertemplate{footline}{}
+    \setbeamertemplate{headline}{\cscsheadline}
+    \frame{\partpage}
+  }
+}
+
+%% DEPRECATED
 \newcommand{\cscschapter}[1]{
 \begin{frame}[plain]
 \begin{picture}(0,0)
-   \put(-16,71){\includegraphics[scale=.25]{cscs_images/image4.pdf}}
-   \put(285,83){\includegraphics[scale=.29]{cscs_images/image1.pdf}}
+  \put(-16,71){\includegraphics[scale=.25]{cscs_images/image4.pdf}}
+  \put(285,83){\includegraphics[scale=.29]{cscs_images/image1.pdf}}
 \end{picture}
 \begin{picture}(0,0)
    \put(-18,-22){\usebeamerfont{part title}\color{cscsgrey}\textbf{#1}}
@@ -188,50 +225,47 @@
 }
 
 \newcommand{\cscstableofcontents}[2][]{
-\begin{frame}
-\frametitle{#2}
-\begin{columns}[T]
-\begin{column}{.5\textwidth}
-\includegraphics[width=\textwidth]{cscs_images/image8.jpeg}
-\end{column}
-\begin{column}{.5\textwidth}
-\vspace{.2cm}
-\tableofcontents[#1]
-\end{column}
-\end{columns}
-\end{frame}
+  \setbeamertemplate{headline}{}
+  \setbeamertemplate{footline}{\cscsfootline}
+  \begin{frame}
+    \frametitle{#2}
+    \begin{columns}[T]
+      \begin{column}{.5\textwidth}
+        \includegraphics[width=\textwidth,height=.82\textheight]{cscs_images/image8.jpeg}
+      \end{column}
+      \begin{column}{.5\textwidth}
+        \vspace{.2cm}
+        \tableofcontents[#1]
+      \end{column}
+    \end{columns}
+  \end{frame}
 }
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Footer with configurable text
 \setbeamercolor{footline}{fg=gray}
-\setbeamertemplate{footline}{
-  \ifbeamer@plainframe
-  \else
-  \begin{picture}(0,0)
-      \put(14,7){\includegraphics[scale=.14]{cscs_images/image2.pdf}}
-      \put(158,11){{\fontsize{4.5}{5}\selectfont \footlinetext {\fontsize{6}{7}\selectfont\color{black}$\;\mid\,$} \color{gray}\insertframenumber}}
-      \put(319,10){\includegraphics[scale=.22]{cscs_images/image1.pdf}}
-  \end{picture}
-  \fi
-}
+
+% There is no need to use \ifbeamer@plainframe, because head/footlines won't be
+% called in plain frames at all
+\setbeamertemplate{footline}{\cscsfootline}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Thank you frame
 \newcommand{\cscsthankyou}[1]{
-    \begin{frame}[noframenumbering,plain]
-\begin{picture}(0,0)
-   \put(-16,71){\includegraphics[scale=.25]{cscs_images/image4.pdf}}
-   \put(285,83){\includegraphics[scale=.29]{cscs_images/image1.pdf}}
-\end{picture}
-\begin{picture}(0,0)
-   \put(-31,-26){\includegraphics[width=\paperwidth]{cscs_images/image7.pdf}}
-   \put(-31,-27){\color{cscsred}\rule{\paperwidth}{0.4mm}}
-   \put(-18,-70){\textbf{\usebeamerfont{part title}\color{cscsgrey}#1}}
-\end{picture}
-    \end{frame}
+  \setbeamertemplate{headline}{\cscsheadline}
+  \setbeamertemplate{footline}{}
+  \begin{frame}[noframenumbering]
+    \begin{beamercolorbox}[wd=\paperwidth]{decoration}
+      \includegraphics[width=\paperwidth,height=.33\paperheight]{cscs_images/image7.pdf}
+      \vspace{-\baselineskip}
+      \color{cscsred}\rule\paperwidth{0.4mm}
+    \end{beamercolorbox}
+    \vspace\@headerdist
+    \bfseries
+    \hspace{-6.5mm}\usebeamerfont{part title}\color{cscsgrey}#1
+  \end{frame}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -378,5 +412,4 @@ adjusted title=#1,
 }
 
 \newcommand{\lstinlineFortran}[1]{\lstinline[style=FortranStyleInline]!#1!}
-\mode
-<all>
+\mode<all>
