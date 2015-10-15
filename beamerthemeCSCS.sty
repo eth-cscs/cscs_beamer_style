@@ -12,8 +12,14 @@
 \tcbuselibrary{listings,skins}
 \usefonttheme[onlymath]{serif}
 
-\newlength{\@headerdist}
+% Declare some length variables
+\newlength\@headerdist
+\newlength\@footlineraise
+\newlength\@titleindent
+
 \setlength{\@headerdist}{2\baselineskip}
+\setlength\@footlineraise{7pt}
+\setlength\@titleindent{-1em}
 
 \mode<presentation>
 
@@ -129,15 +135,15 @@
     \color{cscsred}\rule\paperwidth{0.4mm}
   \end{beamercolorbox}
 
-  \vspace{\@headerdist}
-  \hspace{-6.5mm}
+  \vspace\@headerdist
+  \hspace\@titleindent
   \textbf{\LARGE{\color{cscsgrey}\inserttitle}}\\[2mm]
   \normalsize
-  \hspace{-6.5mm}
+  \hspace\@titleindent
   {\color{gray}\insertsubtitle}\\
-  \hspace{-6.5mm}
+  \hspace\@titleindent
   {\color{gray}\insertauthor}\\
-  \hspace{-6.5mm}
+  \hspace\@titleindent
   {\color{gray}\insertdate}
 }
 
@@ -152,17 +158,15 @@
   }
 }
 
-\newlength\footlineraise
-\setlength\footlineraise{7pt}
 \newcommand\cscsfootline{
   \hbox{
-    \begin{beamercolorbox}[wd=.15\paperwidth,ht=1.1em,dp=\footlineraise,center]{footline}
+    \begin{beamercolorbox}[wd=.15\paperwidth,ht=1.1em,dp=\@footlineraise,center]{footline}
       \includegraphics[scale=.14]{cscs_images/image2.pdf}
     \end{beamercolorbox}
-    \begin{beamercolorbox}[wd=.70\paperwidth,ht=1.1em,dp=\footlineraise,center]{footline}
+    \begin{beamercolorbox}[wd=.70\paperwidth,ht=1.1em,dp=\@footlineraise,center]{footline}
       \footlinetext\hspace{1ex}$\mid$\hspace{1ex}\insertframenumber
     \end{beamercolorbox}
-    \begin{beamercolorbox}[wd=.15\paperwidth,ht=1.1em,dp=\footlineraise,center]{footline}
+    \begin{beamercolorbox}[wd=.15\paperwidth,ht=1.1em,dp=\@footlineraise,center]{footline}
       \includegraphics[scale=.22]{cscs_images/image1.pdf}
     \end{beamercolorbox}
   }
@@ -178,7 +182,7 @@
 % Part title frame
 \setbeamertemplate{part page}{
   \bfseries
-  \hspace{-6.5mm}\usebeamerfont{part title}\color{cscsgrey}\insertpart
+  \hspace\@titleindent\usebeamerfont{part title}\color{cscsgrey}\insertpart
   \vspace{-5pt}
   \begin{beamercolorbox}[wd=\paperwidth]{line}
     \color{cscsred}\rule\paperwidth{0.4mm}
@@ -264,7 +268,7 @@
     \end{beamercolorbox}
     \vspace\@headerdist
     \bfseries
-    \hspace{-6.5mm}\usebeamerfont{part title}\color{cscsgrey}#1
+    \hspace\@titleindent\usebeamerfont{part title}\color{cscsgrey}#1
   \end{frame}
 }
 
