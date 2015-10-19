@@ -5,6 +5,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{beamerthemeCSCS}[2015/04/21 CSCS beamer theme]
 \RequirePackage[scaled=.85]{helvet}
+\RequirePackage{changepage}
 \RequirePackage{tcolorbox}
 \RequirePackage{listings}
 \RequirePackage{MnSymbol}
@@ -17,7 +18,7 @@
 \newlength\@footlineraise
 \newlength\@titleindent
 
-\setlength{\@headerdist}{2\baselineskip}
+\setlength{\@headerdist}{.5\baselineskip}
 \setlength\@footlineraise{7pt}
 \setlength\@titleindent{-1em}
 
@@ -128,6 +129,7 @@
 
 % title page with CSCS image
 \setbeamertemplate{title page}{
+  \vspace{1em}
   \begin{beamercolorbox}[wd=\paperwidth]{decoration}
     \vspace{\baselineskip}
     \includegraphics[width=\paperwidth,height=.33\paperheight]{\picturetitle}
@@ -136,15 +138,15 @@
   \end{beamercolorbox}
 
   \vspace\@headerdist
-  \hspace\@titleindent
-  \textbf{\LARGE{\color{cscsgrey}\inserttitle}}\\[2mm]
-  \normalsize
-  \hspace\@titleindent
-  {\color{gray}\insertsubtitle}\\
-  \hspace\@titleindent
-  {\color{gray}\insertauthor}\\
-  \hspace\@titleindent
-  {\color{gray}\insertdate}
+  \begin{adjustwidth}{\@titleindent}{\@titleindent}
+    \textbf{\LARGE{\color{cscsgrey}\inserttitle}}\\[2mm]
+    {
+      \normalsize\color{gray}
+      \insertsubtitle \\
+      \insertauthor \\
+      \insertdate \\
+    }
+  \end{adjustwidth}
 }
 
 \newcommand\cscsheadline{
@@ -182,8 +184,10 @@
 % Part title frame
 \setbeamertemplate{part page}{
   \bfseries
-  \hspace\@titleindent\usebeamerfont{part title}\color{cscsgrey}\insertpart
-  \vspace{-5pt}
+  \begin{adjustwidth}{\@titleindent}{\@titleindent}
+    \usebeamerfont{part title}\color{cscsgrey}\insertpart
+  \end{adjustwidth}
+  \vspace{-7pt}
   \begin{beamercolorbox}[wd=\paperwidth]{line}
     \color{cscsred}\rule\paperwidth{0.4mm}
   \end{beamercolorbox}
@@ -267,8 +271,10 @@
       \color{cscsred}\rule\paperwidth{0.4mm}
     \end{beamercolorbox}
     \vspace\@headerdist
-    \bfseries
-    \hspace\@titleindent\usebeamerfont{part title}\color{cscsgrey}#1
+    \begin{adjustwidth}{\@titleindent}{\@titleindent}
+      \bfseries
+      \hspace\@titleindent\usebeamerfont{part title}\color{cscsgrey}#1
+    \end{adjustwidth}
   \end{frame}
 }
 
