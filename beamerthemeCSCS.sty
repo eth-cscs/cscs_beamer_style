@@ -121,8 +121,9 @@
 {
   \ifbeamer@plainframe
   \else
-    \vspace{.5cm}\hspace{-.5cm}
-    \textbf{\color{cscsgrey}\insertframetitle}
+    \vspace{.35cm}
+    \hspace\@titleindent\textbf{\color{cscsgrey}\insertframetitle}\par
+    \hspace\@titleindent\small\color{cscsgrey}\insertframesubtitle
     \vspace{-.2cm}
   \fi
 }
