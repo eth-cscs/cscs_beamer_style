@@ -370,15 +370,14 @@ breaklines=true
 }
 
 
-\newtcblisting{Cpplisting}[2][]{
+\newtcblisting{Cpplisting}[1]{
 colframe=cscsred,
 colbacktitle=cscswhite!50!cscsred,
 coltitle=cscsblack,
 left=.5em, right=.5em, top=-.5em, bottom=-.5em, bottomtitle=0pt, toptitle=0pt,
 listing only,
 listing style=CppStyle,
-adjusted title=#1,
-#2
+adjusted title={#1},
 }
 
 \newcommand{\lstinlineCpp}[1]{\lstinline[style=CppStyleInline]!#1!}
@@ -410,15 +409,14 @@ breaklines=true
 }
 
 
-\newtcblisting{Fortranlisting}[2][]{
+\newtcblisting{Fortranlisting}[1]{
 colframe=cscsred,
 colbacktitle=cscswhite!50!cscsred,
 coltitle=cscsblack,
 left=0pt, right=0pt, top=-6pt, bottom=-6pt, bottomtitle=0pt, toptitle=0pt,
 listing only,
 listing style=FortranStyle,
-adjusted title=#1,
-#2
+adjusted title={#1},
 }
 
 \newcommand{\lstinlineFortran}[1]{\lstinline[style=FortranStyleInline]!#1!}
