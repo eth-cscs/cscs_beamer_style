@@ -1,6 +1,6 @@
 .PHONY: all clean clean-files clean-figs
 
-LATEX = pdflatex
+LATEX = xelatex
 LATEX_OPTIONS =
 TARGET_EN = example.pdf
 TARGET = $(TARGET_EN)
@@ -9,20 +9,25 @@ SOURCES_EN = example.tex
 INC = $(SOURCES_EN) beamerthemeCSCS.sty
 
 CLEANFILES = $(TARGET_BASE).pdf \
-	*.ps *.log *.bak *.bbl *.aux *.blg *.dvi *.toc *.out *.nav *.snm *.vrb
+	*.ps *.log *.bak *.bbl *.aux *.blg *.dvi *.toc *.out *.nav *.snm *.vrb \
+	*.listing
 
 RM = /bin/rm -f
 figs = \
-	cscs_images/image1.eps \
-	cscs_images/image2.eps \
-	cscs_images/image3.eps \
-	cscs_images/image4.eps \
-	cscs_images/image5.eps \
-	cscs_images/image6.eps \
-	cscs_images/image7.eps
+	cscs_images/eth_logo.pdf \
+	cscs_images/cscs_entrance_painting.pdf \
+	cscs_images/cscs_logo.pdf \
+	cscs_images/cscs_logo_fullname.pdf \
+	cscs_images/cscs_machine_room.pdf \
+	cscs_images/cscs_external_glass.pdf \
+	cscs_images/cscs_entrance_equations.pdf \
+	cscs_images/reframe_logo-only-transparent.png \
+	cscs_images/email-icon.png \
+	cscs_images/rtd-icon.png \
+	cscs_images/github-icon.png \
+	cscs_images/slack-icon.png
 
 all: $(TARGET)
-clean: clean-files clean-figs
 
 $(TARGET): $(figs) $(TARGET_BASE).tex $(INC)
 	outfile=`mktemp .tex.XXXXXX`; \
@@ -41,13 +46,11 @@ $(TARGET_BASE).bbl: $(TARGET_BASE).bib
 	done; \
 	$(RM) $$outfile
 
-# Some latex installations need the eps files as well
-%.eps: %.pdf
-	@echo Converting $< to $@ ...; \
-	pdftops -eps $<
+%.pdf:
+		@echo
 
-clean-files:
+%.png:
+		@echo
+
+clean:
 	$(RM) $(CLEANFILES)
-
-clean-figs:
-	$(RM) $(figs)

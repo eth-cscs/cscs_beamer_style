@@ -1,48 +1,122 @@
-\documentclass[aspectratio=1610]{beamer}
+\documentclass[aspectratio=169,12pt]{beamer}
 \usetheme{CSCS}
 
+\usepackage[no-math]{fontspec}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{xspace}
+\usepackage{listings}
+
+% Pick your font here
+%\setsansfont{Fira Sans Condensed}
+%\setsansfont{Catamaran}
+\setsansfont{Helvetica}
+\setmonofont{Courier}
+%\setmonofont{Menlo}
+\urlstyle{sf}
+
+\graphicspath{{./figs/}}
+
+
 % define footer text
-\newcommand{\footlinetext}{Insert\_Footer}
+\newcommand{\footlinetext}{Footer message}
 
 % Select the image for the title page
-\newcommand{\picturetitle}{cscs_images/image3.pdf}
+\newcommand{\picturetitle}{cscs_images/cscs_entrance_painting.pdf}
 %\newcommand{\picturetitle}{cscs_images/image5.pdf}
 %\newcommand{\picturetitle}{cscs_images/image6.pdf}
+
+% FIXME: I need to move the following style definitions inside the beamer style
+% file
+
+\lstdefinestyle{cxxstyle}{
+  basicstyle=\scriptsize\ttfamily,
+  keywordstyle=\color{blue},
+  stringstyle=\color{magenta},
+  language=[11]C++,
+  showstringspaces=false,
+  escapechar=\%
+}
+
+\lstdefinestyle{shstyle}{
+  language=bash,
+  basicstyle=\scriptsize\ttfamily,
+  keywordstyle=\color{blue},
+  stringstyle=\color{magenta},
+  commentstyle=\itshape\color{cscsred},
+}
+
+\lstdefinestyle{pystyle}{
+  language=Python,
+  basicstyle=\ttfamily\tiny,
+  keywordstyle=\color{blue},
+  stringstyle=\color{magenta},
+  commentstyle=\itshape\color{cscsred},
+  %% numbers=left,
+  %% stepnumber=5,
+  %% numbersep=3pt,
+  %% numberstyle=\footnotesize,
+  morekeywords={as, self},
+}
+
+
+% Style for rendering ReFrame output
+\lstdefinestyle{rfmstyle}{
+  basicstyle=\tiny\ttfamily,
+  keywordstyle=\color{green!60!black},
+  keywordstyle=[2]{\color{red!80!black}},
+  commentstyle=\itshape\color{cscsred},
+  sensitive,
+  keywords={RUN, OK, PASSED},
+  keywords=[2]{FAIL, FAILED}
+}
+
+\newcommand\pyinline[1]{\lstinline[style=pystyle]!#1!}
+\newcommand\shinline[1]{\lstinline[style=shstyle,basicstyle=\ttfamily\normalsize]!#1!}
 
 
 % Please use the predifined colors:
 % cscsred, cscsgrey, cscsgreen, cscsblue, cscsbrown, cscspurple, cscsyellow, cscsblack, cscswhite
 
-\author{Author, CSCS}
-\title{Multiline \\ presentation title}
-%\title{Single line presentation title}
-\subtitle{Event}
-\date{\today}
+\author{
+  John Smith, Role, CSCS
+}
+\title{CSCS \LaTeX\ Presentation Template}
+\subtitle{
+  Event Name
+}
+\date{DD/MM/YYYY}
 
 \begin{document}
 
 % TITLE SLIDE
 \cscstitle
 
-% EMPTY SLIDE
-\begin{frame}
-\end{frame}
-
-% TABLE OF CONTENT SLIDE
-% All options for table of contents:
-% currentsection, currentsubsection, firstsection=xx, hideallsubsections, hideothersubsections, part=xx, pausesections, pausesubsections, sections=xx, sections={xx-yy}, sections={xx,yy}
-%\cscstableofcontents[hideallsubsections]{Title}
 \cscstableofcontents{TOC Title}
 
-\section{Section1}
-\subsection{Subsection1}
-\subsubsection{Subsubsection1}
+\section{Topic 1}
+\subsection{Subtopic 1}
+\subsection{Subtopic 2}
+\subsubsection{Subsubtopic 1}
+\subsubsection{Subsubtopic 2}
 
-\section{Section2}
-\subsection{Subsection2}
-\subsubsection{Subsubsection2}
+\section{Topic 2}
+\subsection{Subtopic 1}
+\subsubsection{Subsubtopic 1}
 
-% New part; a frame with part name will be automatically inserted
+
+\begin{frame}{Slide title}{Slide subtitle}
+  \begin{itemize}
+  \item Point 1
+    \begin{itemize}
+    \item Subpoint 1
+    \item Subpoint 2
+    \end{itemize}
+  \item Point 2
+  \item Point 3
+  \end{itemize}
+\end{frame}
+
 \part{Part Title}
 
 % Block style example
@@ -143,37 +217,65 @@
     \end{red2block}
 \end{frame}
 
-\begin{frame}[fragile]{C/C++ Code listings}
-\begin{Cpplisting}{My code title with some openmp}
-int main (int argc, char *argv[]) {
-    int nthreads, tid;
-    #pragma omp parallel private(nthreads, tid)
-    {
-        tid = omp_get_thread_num();
-        printf("Hello World from thread = %d\n", tid);
-        if (tid == 0) {
-            nthreads = omp_get_num_threads();
-            printf("Number of threads = %d\n", nthreads);
-        }
-    }  /* All threads join master thread and disband */
-    return 0;
+\begin{frame}[fragile]{C/C++ code listings}{Example copied from \url{https://en.cppreference.com/w/cpp/algorithm/move}}
+  \begin{lstlisting}[style=cxxstyle]
+void f(int n)
+{
+    std::this_thread::sleep_for(std::chrono::seconds(n));
+    std::cout << "thread " << n << " ended" << '\n';
 }
-\end{Cpplisting}
-Here some C++ code within text: \lstinlineCpp{int i = foo();}
+
+int main()
+{
+    std::vector<std::thread> v;
+    v.emplace_back(f, 1);
+    v.emplace_back(f, 2);
+    v.emplace_back(f, 3);
+    std::list<std::thread> l;
+    // copy() would not compile, because std::thread is noncopyable
+
+    std::move(v.begin(), v.end(), std::back_inserter(l));
+    for (auto& t : l) t.join();
+}
+  \end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile]{Fortran code listings}
-\begin{Fortranlisting}{My Fortran code here}
-program variable
-real :: x ! This defines a variable called x
-x = 23.6*log(4.2)/(3.0+2.1) ! This gives it a value
-print *, 'The value of x is ', x 
-end program
-\end{Fortranlisting}
-Here some Fortran code within text: \lstinlineFortran{INTEGER :: Y(1,5)}
+\begin{frame}[fragile]{Python code listings}{Example copied from \url{https://github.com/eth-cscs/reframe/blob/master/tutorials/basics/hello/hello2.py}}
+  \begin{lstlisting}[style=pystyle]
+import reframe as rfm
+import reframe.utility.sanity as sn
+
+
+@rfm.parameterized_test(['c'], ['cpp'])
+class HelloMultiLangTest(rfm.RegressionTest):
+    def __init__(self, lang):
+        self.valid_systems = ['*']
+        self.valid_prog_environs = ['*']
+        self.sourcepath = f'hello.{lang}'
+        self.sanity_patterns = sn.assert_found(r'Hello, World\!', self.stdout)
+  \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Shell code listings}{Example copied from \url{https://reframe-hpc.readthedocs.io/en/stable/tutorial_basics.html}}
+  \begin{lstlisting}[style=shstyle]
+#!/bin/bash
+#SBATCH --job-name="rfm_StreamWithRefTest_job"
+#SBATCH --ntasks=1
+#SBATCH --output=rfm_StreamWithRefTest_job.out
+#SBATCH --error=rfm_StreamWithRefTest_job.err
+#SBATCH --time=0:10:0
+#SBATCH -A csstaff
+#SBATCH --constraint=gpu
+
+module unload PrgEnv-cray
+module load PrgEnv-gnu
+export OMP_NUM_THREADS=4
+export OMP_PLACES=cores
+srun ./StreamWithRefTest
+  \end{lstlisting}
 \end{frame}
 
 % THANK YOU SLIDE
-\cscsthankyou{Thank you for your attention.}
+\cscsthankyou{Thank you for your attention}
 
 \end{document}

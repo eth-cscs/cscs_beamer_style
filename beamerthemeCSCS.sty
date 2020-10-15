@@ -9,6 +9,7 @@
 \RequirePackage{tcolorbox}
 \RequirePackage{listings}
 \RequirePackage{MnSymbol}
+\RequirePackage{xhfill}
 
 \tcbuselibrary{listings,skins}
 \usefonttheme[onlymath]{serif}
@@ -18,7 +19,7 @@
 \newlength\@footlineraise
 \newlength\@titleindent
 
-\setlength{\@headerdist}{.5\baselineskip}
+\setlength{\@headerdist}{-\baselineskip}
 \setlength\@footlineraise{7pt}
 \setlength\@titleindent{-1em}
 
@@ -122,41 +123,53 @@
   \ifbeamer@plainframe
   \else
     \vspace{.35cm}
-    \hspace\@titleindent\textbf{\color{cscsgrey}\insertframetitle}\par
-    \hspace\@titleindent\small\color{cscsgrey}\insertframesubtitle
+    \hspace\@titleindent\large\textbf{\color{cscsgrey}\insertframetitle}%\hfill\includegraphics[height=1.5em]{cscs_images/reframe_logo-only-transparent.png}
+    \par\hspace\@titleindent\small\color{cscsgrey}\insertframesubtitle
     \vspace{-.2cm}
   \fi
 }
 
 % title page with CSCS image
 \setbeamertemplate{title page}{
-  \vspace{1em}
-  \begin{beamercolorbox}[wd=\paperwidth]{decoration}
-    \vspace{\baselineskip}
-    \includegraphics[width=\paperwidth,height=.33\paperheight]{\picturetitle}
-    \vspace{-\baselineskip}
-    \color{cscsred}\rule\paperwidth{0.4mm}
+  \begin{beamercolorbox}[wd=\paperwidth,ht=.65\textheight]{decoration}
+    \includegraphics[width=\paperwidth,height=.65\textheight-60pt]{\picturetitle}
+    \color{cscsred}\raisebox{1.1em}{\rule\paperwidth{0.4mm}}
   \end{beamercolorbox}
 
   \vspace\@headerdist
   \begin{adjustwidth}{\@titleindent}{\@titleindent}
-    \textbf{\LARGE{\color{cscsgrey}\inserttitle}}\\[2mm]
+    \textbf{\normalsize{\color{cscsgrey}\inserttitle}}\\[2mm]
+    \begin{minipage}{.6\textwidth}
     {
-      \normalsize\color{gray}
+      \scriptsize\color{gray}
       \insertsubtitle \\
+      \vfill
       \insertauthor \\
-      \insertdate \\
+      \vfill
+      \insertdate
     }
+    \end{minipage}
+    \hspace{1em}
+    \begin{minipage}{.355\textwidth}
+      \scriptsize\color{gray}
+      \setlength\tabcolsep{3pt}
+      %% \begin{tabular}{ll}
+      %% \includegraphics[width=1.2em]{cscs_images/email-icon.png}  & \raisebox{.3em}{\url{reframe@cscs.ch}} \\
+      %% \includegraphics[width=1.2em]{cscs_images/rtd-icon.png}    & \raisebox{.3em}{\url{https://reframe-hpc.readthedocs.io}} \\
+      %% \includegraphics[width=1.2em]{cscs_images/github-icon.png} & \raisebox{.3em}{\url{https://github.com/eth-cscs/reframe}} \\
+      %% \includegraphics[width=1.2em]{cscs_images/slack-icon.png}  & \raisebox{.3em}{\url{https://reframe-slack.herokuapp.com}} \\
+      %% \end{tabular}
+    \end{minipage}
   \end{adjustwidth}
 }
 
 \newcommand\cscsheadline{
   \hbox{
     \begin{beamercolorbox}[wd=.5\paperwidth,ht=36pt,left]{headline}
-      \hspace{12pt}\includegraphics[scale=.25]{cscs_images/image4.pdf}
+      \hspace{12pt}\includegraphics[scale=.25]{cscs_images/cscs_logo_fullname.pdf}
     \end{beamercolorbox}
     \begin{beamercolorbox}[wd=.5\paperwidth,ht=36pt,right]{headline}
-      \includegraphics[scale=.29]{cscs_images/image1.pdf}\hspace{18pt}
+      \includegraphics[scale=.29]{cscs_images/eth_logo.pdf}\hspace{18pt}
     \end{beamercolorbox}
   }
 }
@@ -164,13 +177,13 @@
 \newcommand\cscsfootline{
   \hbox{
     \begin{beamercolorbox}[wd=.15\paperwidth,ht=1.1em,dp=\@footlineraise,center]{footline}
-      \includegraphics[scale=.14]{cscs_images/image2.pdf}
+      \includegraphics[scale=.14]{cscs_images/cscs_logo.pdf}
     \end{beamercolorbox}
     \begin{beamercolorbox}[wd=.70\paperwidth,ht=1.1em,dp=\@footlineraise,center]{footline}
       \footlinetext\hspace{1ex}$\mid$\hspace{1ex}\insertframenumber
     \end{beamercolorbox}
     \begin{beamercolorbox}[wd=.15\paperwidth,ht=1.1em,dp=\@footlineraise,center]{footline}
-      \includegraphics[scale=.22]{cscs_images/image1.pdf}
+      \includegraphics[scale=.22]{cscs_images/eth_logo.pdf}
     \end{beamercolorbox}
   }
 }
@@ -179,6 +192,8 @@
   \setbeamertemplate{footline}{}
   \setbeamertemplate{headline}{\cscsheadline}
   \frame{\titlepage}
+  \setbeamertemplate{headline}{}
+  \setbeamertemplate{footline}{\cscsfootline}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -186,7 +201,7 @@
 \setbeamertemplate{part page}{
   \bfseries
   \begin{adjustwidth}{\@titleindent}{\@titleindent}
-    \usebeamerfont{part title}\color{cscsgrey}\insertpart
+    \large\color{cscsgrey}\insertpart
   \end{adjustwidth}
   \vspace{-7pt}
   \begin{beamercolorbox}[wd=\paperwidth]{line}
@@ -206,8 +221,8 @@
 \newcommand{\cscschapter}[1]{
 \begin{frame}[plain]
 \begin{picture}(0,0)
-  \put(-16,71){\includegraphics[scale=.25]{cscs_images/image4.pdf}}
-  \put(285,83){\includegraphics[scale=.29]{cscs_images/image1.pdf}}
+  \put(-16,71){\includegraphics[scale=.25]{cscs_images/cscs_logo_fullname.pdf}}
+  \put(285,83){\includegraphics[scale=.29]{cscs_images/eth_logo.pdf}}
 \end{picture}
 \begin{picture}(0,0)
    \put(-18,-22){\usebeamerfont{part title}\color{cscsgrey}\textbf{#1}}
@@ -234,15 +249,13 @@
 }
 
 \newcommand{\cscstableofcontents}[2][]{
-  \setbeamertemplate{headline}{}
-  \setbeamertemplate{footline}{\cscsfootline}
   \begin{frame}{#2}
-    \vspace{-5pt}
+    \vspace{-\baselineskip}
     \begin{columns}[T]
-      \begin{column}{.5\textwidth}
-        \includegraphics[width=\textwidth,height=.82\textheight]{cscs_images/image8.jpeg}
+      \begin{column}{.4\textwidth}
+        \includegraphics[width=\textwidth,height=.7\textheight]{cscs_images/cscs_external_glass.jpeg}
       \end{column}
-      \begin{column}{.5\textwidth}
+      \begin{column}{.6\textwidth}
         \vspace{.2cm}
         \tableofcontents[#1]
       \end{column}
@@ -266,15 +279,27 @@
   \setbeamertemplate{headline}{\cscsheadline}
   \setbeamertemplate{footline}{}
   \begin{frame}[noframenumbering]
-    \begin{beamercolorbox}[wd=\paperwidth]{decoration}
-      \includegraphics[width=\paperwidth,height=.33\paperheight]{cscs_images/image7.pdf}
-      \vspace{-\baselineskip}
-      \color{cscsred}\rule\paperwidth{0.4mm}
+    \begin{beamercolorbox}[wd=\paperwidth,ht=.5\textheight]{decoration}
+      \includegraphics[width=\paperwidth,height=.5\textheight-36pt]{cscs_images/cscs_entrance_equations.pdf}
+      \color{cscsred}\raisebox{1.1em}{\rule\paperwidth{0.4mm}}
     \end{beamercolorbox}
     \vspace\@headerdist
     \begin{adjustwidth}{\@titleindent}{\@titleindent}
-      \bfseries
-      \hspace\@titleindent\usebeamerfont{part title}\color{cscsgrey}#1
+      {
+       \bfseries
+       \hspace{1em}\large\color{cscsgrey}#1
+      }
+      %% \begin{table}
+      %%   \raggedleft
+      %%   \scriptsize\color{gray}
+      %%   \setlength\tabcolsep{3pt}
+      %%   \begin{tabular}{ll}
+      %%     \includegraphics[width=1.2em]{cscs_images/email-icon.png}  & \raisebox{.3em}{\url{reframe@cscs.ch}} \\
+      %%     \includegraphics[width=1.2em]{cscs_images/rtd-icon.png}    & \raisebox{.3em}{\url{https://reframe-hpc.readthedocs.io}} \\
+      %%     \includegraphics[width=1.2em]{cscs_images/github-icon.png} & \raisebox{.3em}{\url{https://github.com/eth-cscs/reframe}} \\
+      %%     \includegraphics[width=1.2em]{cscs_images/slack-icon.png}  & \raisebox{.3em}{\url{https://reframe-slack.herokuapp.com}} \\
+      %%   \end{tabular}
+      %% \end{table}
     \end{adjustwidth}
   \end{frame}
 }
@@ -421,4 +446,5 @@ adjusted title={#1},
 }
 
 \newcommand{\lstinlineFortran}[1]{\lstinline[style=FortranStyleInline]!#1!}
-\mode<all>
+\mode<all
+>
