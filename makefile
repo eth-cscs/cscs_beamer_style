@@ -14,17 +14,17 @@ CLEANFILES = $(TARGET_BASE).pdf \
 
 RM = /bin/rm -f
 figs = \
-	cscs_images/eth_logo.pdf \
+	cscs_images/cscs_entrance_equations.pdf \
 	cscs_images/cscs_entrance_painting.pdf \
+	cscs_images/cscs_external_glass.jpeg \
 	cscs_images/cscs_logo.pdf \
 	cscs_images/cscs_logo_fullname.pdf \
 	cscs_images/cscs_machine_room.pdf \
-	cscs_images/cscs_external_glass.pdf \
-	cscs_images/cscs_entrance_equations.pdf \
-	cscs_images/reframe_logo-only-transparent.png \
 	cscs_images/email-icon.png \
-	cscs_images/rtd-icon.png \
+	cscs_images/eth_logo.pdf \
 	cscs_images/github-icon.png \
+	cscs_images/rtd-icon.png \
+	cscs_images/reframe_logo-only-transparent.png \
 	cscs_images/slack-icon.png
 
 all: $(TARGET)
