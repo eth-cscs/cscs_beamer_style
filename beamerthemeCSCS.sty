@@ -4,11 +4,14 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{beamerthemeCSCS}[2015/04/21 CSCS beamer theme]
+\RequirePackage[style=numeric,backend=bibtex]{biblatex}
 \RequirePackage{ifthen}
 \RequirePackage[scaled=.85]{helvet}
 \RequirePackage{tcolorbox}
 \RequirePackage{listings}
 \tcbuselibrary{listings,skins}
+
+\addbibresource{ref.bib}
 
 \newlength{\@headerdist}
 \setlength{\@headerdist}{5mm}
