@@ -46,6 +46,11 @@
 % CHAPTER SLIDE
 \cscschapter{Chapter Title}
 
+% Citations from the ref.bib
+\begin{frame}{Citations}
+    CSCS website \cite{cscs_website}
+\end{frame}
+
 % Block style example
 \begin{frame}{Quick Styles}
 \begin{columns}
@@ -172,5 +177,10 @@ Here some Fortran code in the text: \lstinlineFortran{INTEGER :: Y(1,5)}
 \end{frame}
 % THANK YOU SLIDE
 \cscsthankyou{Thank you for your attention.}
+
+\begin{frame}[allowframebreaks]
+    \frametitle{References}
+    \printbibliography[heading=none]
+\end{frame}
 
 \end{document}
